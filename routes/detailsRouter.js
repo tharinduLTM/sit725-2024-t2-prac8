@@ -6,3 +6,4 @@ router.post('/details', detailsController.postDetails);
 router.get('/lastDetail', detailsController.getLastDetail);
 
 module.exports = router;
+

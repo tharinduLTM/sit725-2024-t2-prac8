@@ -13,12 +13,9 @@ const addCards = (items) => {
             </div>`;
         $("#card-section").html(itemToAppend);
 
-       
         $("#lastSubmittedDetails").removeAttr("hidden");
     });
 };
-
-
 
 const formSubmitted = () => {
     let formData = {
@@ -29,14 +26,14 @@ const formSubmitted = () => {
 
     console.log(formData);
     postDetails(formData);
-}
+};
 
-function postDetails(details){
+function postDetails(details) {
     $.ajax({
-        url:'/api/details',
-        type:'POST',
+        url: '/api/details',
+        type: 'POST',
         data: details,
-        success: (result)=>{
+        success: (result) => {
             if (result.statusCode === 201) {
                 alert('Details submitted successfully');
                 getLastSubmittedDetails(); 
@@ -45,18 +42,26 @@ function postDetails(details){
     });
 }
 
-function getLastSubmittedDetails(){
-    $.get('/api/lastDetail', (response)=>{
+function getLastSubmittedDetails() {
+    $.get('/api/lastDetail', (response) => {
         if (response.statusCode === 200) {
             addCards([response.data]); 
         }
     });
 }
 
-$(document).ready(function(){
+
+let socket = io();
+socket.on('state', (state) => {
+    console.log('Broadcasting State: ' + state);
+    $('#broadcastingStateDisplay').text('Broadcasting State: ' + state);
+});
+
+$(document).ready(function () {
     $('select').formSelect();
-    $('#formSubmit').click(()=>{
+    $('#formSubmit').click(() => {
         formSubmitted();
     });
     $('.modal').modal();
+    getLastSubmittedDetails();
 });

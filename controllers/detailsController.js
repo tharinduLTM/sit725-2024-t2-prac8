@@ -12,9 +12,9 @@ const postDetails = (req, res) => {
                 data: {
                     acknowledged: result.acknowledged,
                     insertedId: result.insertedId,
-                    firstName: details.firstName,      // Include first name
-                    lastName: details.lastName,        // Include last name
-                    currentState: details.currentState // Include current state
+                    firstName: details.firstName,      
+                    lastName: details.lastName,        
+                    currentState: details.currentState 
                 },
                 message: 'success'
             });
@@ -25,16 +25,6 @@ const postDetails = (req, res) => {
 };
 
 
-// const postDetails = (req, res) => {
-//     let details = req.body;
-//     detailsModel.postDetails(details, (err, result) => {
-//         if (!err) {
-//             res.status(201).json({ statusCode: 201, data: result, message: 'success' });
-//         } else {
-//             res.status(500).json({ statusCode: 500, message: 'Internal Server Error' });
-//         }
-//     });
-// }
 
 const getLastDetail = (req, res) => {
     detailsModel.getLastDetail((err, result) => {

@@ -178,6 +178,7 @@
     "side-channel": "^1.0.6",
     "simple-update-notifier": "^2.0.0",
     "smart-buffer": "^4.2.0",
+    "socket.io": "^4.7.5",
     "socks": "^2.7.1",
     "sparse-bitfield": "^3.0.3",
     "sshpk": "^1.18.0",
